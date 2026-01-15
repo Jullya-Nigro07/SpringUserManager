@@ -1,11 +1,11 @@
 package dio.web.api.service;
 
+import dio.web.api.dto.UserCreateDTO;
+import dio.web.api.dto.UserUpdateDTO;
 import dio.web.api.handler.BusinessException;
-import dio.web.api.handler.ResourceNotFoundException;
 import dio.web.api.model.User;
 import dio.web.api.repository.UserRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -17,16 +17,35 @@ public class UserService {
         this.repository = repository;
     }
 
-    public User save(User user) {
-        if (user.getId() != null) {
-            throw new BusinessException("Usuário já possui ID");
-        }
+    public User create(UserCreateDTO dtoUser) {
+        User user = new User();
+
+        user.setName(dtoUser.getName());
+        user.setEmail(dtoUser.getEmail());
+        user.setPassword(dtoUser.getPassword());
+
         return repository.save(user);
     }
 
-    public void delete(Integer id) {
+    public User update(Long id, UserUpdateDTO dtoUser) {
+        User existing = repository.findById(id)
+                .orElseThrow(() -> new BusinessException("Usuário não encontrado"));
+
+        if (dtoUser.getName() != null)
+            existing.setName((dtoUser.getName()));
+
+        if (dtoUser.getEmail() != null)
+            existing.setEmail((dtoUser.getEmail()));
+
+        if (dtoUser.getPassword() != null)
+            existing.setPassword((dtoUser.getPassword()));
+
+        return repository.save(existing);
+    }
+
+    public void delete(Long id) {
         if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException("Usuário não encontrado");
+            throw new BusinessException("Usuário não encontrado");
         }
         repository.deleteById(id);
     }
@@ -35,9 +54,9 @@ public class UserService {
         return repository.findAll();
     }
 
-    public User findByUsername(String username) {
-        return repository.findByUsernameIgnoreCase(username)
+    public User findById(Long id) {
+        return repository.findById(id)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Usuário não encontrado"));
+                        new BusinessException("Usuário não encontrado"));
     }
 }
