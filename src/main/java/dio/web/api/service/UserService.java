@@ -3,6 +3,7 @@ package dio.web.api.service;
 import dio.web.api.dto.UserCreateDTO;
 import dio.web.api.dto.UserUpdateDTO;
 import dio.web.api.handler.BusinessException;
+import dio.web.api.handler.ResourceNotFoundException;
 import dio.web.api.model.User;
 import dio.web.api.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class UserService {
 
     public User update(Long id, UserUpdateDTO dtoUser) {
         User existing = repository.findById(id)
-                .orElseThrow(() -> new BusinessException("Usuário não encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
 
         if (dtoUser.getName() != null)
             existing.setName((dtoUser.getName()));
@@ -45,7 +46,7 @@ public class UserService {
 
     public void delete(Long id) {
         if (!repository.existsById(id)) {
-            throw new BusinessException("Usuário não encontrado");
+            throw new ResourceNotFoundException("Usuário não encontrado");
         }
         repository.deleteById(id);
     }
@@ -57,6 +58,6 @@ public class UserService {
     public User findById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() ->
-                        new BusinessException("Usuário não encontrado"));
+                        new ResourceNotFoundException("Usuário não encontrado"));
     }
 }
