@@ -55,8 +55,11 @@ O User Management with Spring é uma API REST para gerenciamento de usuários, d
                 │     └──  UserController.java
                 │
                 ├── dto/
-                │      ├── UserCreateDTO.java
-                │      └──  UserUpdateDTO.java
+                │      ├── request/
+                │           └── UserCreateDTO.java
+                │           └── UserUpdateDTO.java
+                │      └── response/
+                │           └── UserResponse.DTO.java
                 │    
                 ├── handler/
                 │      ├── BusinessException.java
@@ -165,4 +168,3 @@ O User Management with Spring é uma API REST para gerenciamento de usuários, d
    ```
    
 ---
-
