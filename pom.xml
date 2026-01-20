@@ -14,9 +14,9 @@
 	</parent>
 
 	<groupId>dio</groupId>
-	<artifactId>User-management-with-Spring</artifactId>
+	<artifactId>SpringUserManager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>User-management-with-Spring</name>
+	<name>SpringUserManager</name>
 	<description>User management wit Spring</description>
 
 	<properties>
