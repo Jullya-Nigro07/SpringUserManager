@@ -9,8 +9,9 @@ Sistema de gerenciamento de usuários desenvolvido com Java 21 e Spring Boot, se
 
 🛠️ Tecnologias Utilizadas
 
-![Linguagem](https://img.shields.io/badge/Linguagem-Java%2021-red)
+![Linguagem](https://img.shields.io/badge/Linguagem-Java%2021-brown)
 ![IDE](https://img.shields.io/badge/IDE-IntelliJ%20IDEA-purple)
+![Gerenciador](https://img.shields.io/badge/Gerenciador-Maven-orange)
 ![Framework](https://img.shields.io/badge/Framework-Spring%20Boot-darkgreen)
 ![Banco de Dados](https://img.shields.io/badge/Banco%20de%20Dados-PostgreSQL-blue)
 
